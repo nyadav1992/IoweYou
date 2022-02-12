@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">IoweYou</string>
+    <string name="app_name">IOU</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="submit">Login</string>
 </resources>

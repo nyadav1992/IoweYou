@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrap_match">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="match_match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="match_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="zero_zero">
+        <item name="android:layout_width">@dimen/dimens_zero_dp</item>
+        <item name="android:layout_height">@dimen/dimens_zero_dp</item>
+    </style>
+
+    <style name="tv_logo" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/logoTextSize</item>
+        <item name="android:textColor">@color/purple_500</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <style name="et_login" parent="match_wrap">
+        <item name="android:textSize">@dimen/login_et_text_size</item>
+        <item name="android:textColor">@color/purple_500</item>
+        <item name="android:background">@drawable/et_rect_border</item>
+        <item name="android:padding">@dimen/login_et_padding</item>
+        <item name="android:maxLines">1</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+</resources>

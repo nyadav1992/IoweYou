@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="value_page_padding">12dp</dimen>
+    <dimen name="dimens_zero_dp">0dp</dimen>
+    <dimen name="splash_logo_margin">60dp</dimen>
+    <dimen name="logoTextSize">64sp</dimen>
+    <dimen name="login_et_text_size">18sp</dimen>
+    <dimen name="login_et_padding">12dp</dimen>
+</resources>
