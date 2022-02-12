@@ -51,6 +51,7 @@ class MyProgress : DialogFragment() {
 
         // dismiss method
         fun hide(activity: AppCompatActivity) {
+            if (dialog!= null)
             dialog?.dismiss()
         }
 

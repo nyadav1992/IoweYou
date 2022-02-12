@@ -21,6 +21,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42"
         android:inputType="text"
         android:hint="@string/username"/>
 
@@ -43,6 +44,6 @@
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/etPass"
         android:onClick="login"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="@dimen/button_top_padding_login"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

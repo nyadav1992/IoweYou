@@ -6,4 +6,5 @@
     <dimen name="logoTextSize">64sp</dimen>
     <dimen name="login_et_text_size">18sp</dimen>
     <dimen name="login_et_padding">12dp</dimen>
+    <dimen name="button_top_padding_login">18dp</dimen>
 </resources>
