@@ -3,4 +3,8 @@
     <string name="username">UserName</string>
     <string name="password">Password</string>
     <string name="submit">Login</string>
+    <string name="enter_email">Please Enter E-Mail Address</string>
+    <string name="enter_password">Please Enter Password</string>
+    <string name="invalid_input">The E-Mail addres you entered is not valid</string>
+    <string name="invalid_credentials">This E-Mail and password is not registered with us.</string>
 </resources>
