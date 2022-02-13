@@ -13,4 +13,13 @@
     <string name="amount">Amount(INR)*</string>
     <string name="description">Description</string>
     <string name="save_expense">Save Expense</string>
+    <string name="expense_date">Expense Date</string>
+    <string name="split_equally_with">Split Equally With</string>
+    <string name="expense_paid_by">Expense Paid By</string>
+    <string name="expense_description">Expense Description</string>
+    <string name="expense_amount">Total Amount</string>
+    <string name="everyone_equally">Everyone Equally</string>
+    <string name="you">You</string>
+    <string name="paid_by">Paid By:</string>
+    <string name="shared_by">Shared By:</string>
 </resources>

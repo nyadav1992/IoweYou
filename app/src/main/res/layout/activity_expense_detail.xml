@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/tvTitle"
-        android:text="Dosa at Vidhyarthi Bhawan with some one specialVidhyarthi Bhawan with some one special"
+        tools:text="Dosa at Vidhyarthi Bhawan with some one specialVidhyarthi Bhawan with some one special"
         android:textSize="24sp"
         android:textColor="@color/black"
         android:maxLines="3"
@@ -37,7 +37,7 @@
             android:id="@+id/tvExpenseDate"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Expense Date"
+            android:text="@string/expense_date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
 
@@ -45,7 +45,7 @@
             android:id="@+id/tvExpenseDateValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Expense Date"
+            tools:text="Expense Date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseDate"/>
 
@@ -53,7 +53,7 @@
             android:id="@+id/tvExpenseAmount"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Expense Amount"
+            android:text="@string/expense_amount"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseDateValue"/>
 
@@ -61,7 +61,7 @@
             android:id="@+id/tvExpenseAmountValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Expense Amount"
+            tools:text="Expense Amount"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmount"/>
 
@@ -69,7 +69,7 @@
             android:id="@+id/tvExpenseDesc"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Expense Desc"
+            android:text="@string/expense_description"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmountValue"/>
 
@@ -77,7 +77,7 @@
             android:id="@+id/tvExpenseDescValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Expense Desc"
+            tools:text="Expense Desc"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseDesc"/>
 
@@ -85,7 +85,7 @@
             android:id="@+id/tvExpensePaidBy"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Expense Paid By"
+            android:text="@string/expense_paid_by"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseDescValue"/>
 
@@ -93,7 +93,7 @@
             android:id="@+id/tvExpensePaidByValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Expense Paid By"
+            tools:text="Expense Paid By"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidBy"/>
 
@@ -101,7 +101,7 @@
             android:id="@+id/tvExpenseSplit"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Split Equally With"
+            android:text="@string/split_equally_with"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidByValue"/>
 
@@ -109,7 +109,7 @@
             android:id="@+id/tvExpenseSplitValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Split Equally With"
+            tools:text="Split Equally With"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplit"/>
 
@@ -117,7 +117,7 @@
             android:id="@+id/tvExpenseYouOwe"
             android:layout_height="0dp"
             style="@style/exp_detail_title"
-            android:text="Expense Date"
+            android:text="@string/expense_date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplitValue"/>
 
@@ -125,7 +125,7 @@
             android:id="@+id/tvExpenseYouOweValue"
             android:layout_height="0dp"
             style="@style/exp_detail_title_value"
-            android:text="Expense Date"
+            tools:text="Expense Date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvExpenseYouOwe"/>
 

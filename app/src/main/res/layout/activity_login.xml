@@ -44,6 +44,7 @@
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/etPass"
         android:onClick="login"
-        android:layout_marginTop="@dimen/button_top_padding_login"/>
+        android:layout_marginTop="@dimen/button_top_padding_login"
+        tools:ignore="UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

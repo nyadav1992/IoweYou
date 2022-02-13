@@ -11,28 +11,28 @@
         style="@style/add_exp_title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Paid By:"/>
+        android:text="@string/paid_by"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPaidByValue"
         style="@style/add_exp_value"
         app:layout_constraintTop_toBottomOf="@+id/tvPaidBy"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="You"/>
+        android:text="@string/you"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSharedBy"
         style="@style/add_exp_title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Shared By:"/>
+        android:text="@string/shared_by"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSharedByValue"
         style="@style/add_exp_value"
         app:layout_constraintTop_toBottomOf="@+id/tvPaidBy"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Everyone Equally"/>
+        android:text="@string/everyone_equally"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etTitle"
