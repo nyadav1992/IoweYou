@@ -10,6 +10,8 @@ import com.example.ioweyou.base.BaseActivity
 import com.example.ioweyou.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import android.util.Patterns
+import com.example.ioweyou.utils.AppConstants
+import com.example.ioweyou.utils.Preferences
 
 
 class LoginActivity : BaseActivity() {
@@ -36,6 +38,7 @@ class LoginActivity : BaseActivity() {
         val enteredValue = etUserName.text.toString().trim()
         val password = etPass.text.toString().trim()
 
+        //Checking validation of input fields
         if (TextUtils.isEmpty(enteredValue)){
             showToast(getString(R.string.enter_email))
         } else if (!isValidEmail(enteredValue)) {
@@ -45,6 +48,7 @@ class LoginActivity : BaseActivity() {
                 if (it != null && it.password.equals(password)) {
                     showToast("Welcome ${it.userName}")
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    Preferences.saveData(AppConstants.isUserLoggedIn, true)
                     finish()
                 } else {
                     showToast(getString(R.string.invalid_credentials))

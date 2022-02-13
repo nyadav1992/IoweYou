@@ -45,4 +45,30 @@
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
     </style>
+
+    <style name="toolbar" parent="match_wrap">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:textSize">@dimen/login_et_text_size</item>
+        <item name="android:textColor">@color/purple_500</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+    </style>
+
+    <style name="exp_detail_title" parent="match_wrap">
+        <item name="android:textSize">@dimen/tv_exp_detail_title</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:layout_marginTop">@dimen/margin_exp_detail_title</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <style name="exp_detail_title_value" parent="match_wrap">
+        <item name="android:textSize">@dimen/tv_exp_detail_value</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/margin_exp_detail_value</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
 </resources>

@@ -7,4 +7,8 @@
     <dimen name="login_et_text_size">18sp</dimen>
     <dimen name="login_et_padding">12dp</dimen>
     <dimen name="button_top_padding_login">18dp</dimen>
+    <dimen name="tv_exp_detail_title">14dp</dimen>
+    <dimen name="tv_exp_detail_value">20dp</dimen>
+    <dimen name="margin_exp_detail_title">14dp</dimen>
+    <dimen name="margin_exp_detail_value">6dp</dimen>
 </resources>

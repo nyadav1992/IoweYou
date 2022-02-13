@@ -7,4 +7,5 @@
     <string name="enter_password">Please Enter Password</string>
     <string name="invalid_input">The E-Mail addres you entered is not valid</string>
     <string name="invalid_credentials">This E-Mail and password is not registered with us.</string>
+    <string name="add_expense">Add Expense</string>
 </resources>
