@@ -50,7 +50,7 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.add_expense -> {
-            AddExpenseFragment.newInstance(user.id.toString(), getString(R.string.invalid_credentials)).show(supportFragmentManager, AddExpenseFragment.TAG)
+            AddExpenseFragment.newInstance(user.id.toString()).show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }
         R.id.home -> {

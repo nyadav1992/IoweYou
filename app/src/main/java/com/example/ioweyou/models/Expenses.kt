@@ -10,6 +10,6 @@ data class Expenses(
     val title: String,
     val date: String,
     val totalAmount: String,
-    val description: String,
+    val description: String? = null,
     val paidBy: String
     )

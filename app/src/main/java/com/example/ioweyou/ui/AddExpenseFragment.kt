@@ -1,36 +1,40 @@
 package com.example.ioweyou.ui
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.models.Expenses
+import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.viewModel.ExpensesViewModel
-import kotlinx.android.synthetic.main.layout_add_expense.*
 import kotlinx.android.synthetic.main.layout_add_expense.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class AddExpenseFragment : DialogFragment() {
+class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var expenseViewModel: ExpensesViewModel
+    private var myView: View? = null
 
     companion object {
 
         const val TAG = "AddExpenseDialog"
 
-        private const val KEY_TITLE = "KEY_TITLE"
-        private const val KEY_SUBTITLE = "KEY_SUBTITLE"
+        private const val USER_ID = "user_id"
 
-        fun newInstance(title: String, subTitle: String): AddExpenseFragment {
+        fun newInstance(userId: String): AddExpenseFragment {
             val args = Bundle()
-            args.putString(KEY_TITLE, title)
-            args.putString(KEY_SUBTITLE, subTitle)
+            args.putString(USER_ID, userId)
             val fragment = AddExpenseFragment()
             fragment.arguments = args
             return fragment
@@ -48,9 +52,11 @@ class AddExpenseFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expenseViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))
-            .get(ExpensesViewModel::class.java)
-        setupView(view)
+        myView = view
+        expenseViewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ExpensesViewModel::class.java)
+
         setupClickListeners(view)
     }
 
@@ -63,16 +69,86 @@ class AddExpenseFragment : DialogFragment() {
         )
     }
 
-    private fun setupView(view: View) {
-//        view.tvPaidBy.text = arguments?.getString(KEY_TITLE)
-//        view.tvPaidByValrajuue.text = arguments?.getString(KEY_SUBTITLE)
+    private fun selectDate() {
+        val calendar: Calendar = Calendar.getInstance()
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+        val datePickerDialog =
+            DatePickerDialog(requireContext(), this, year, month, day)
+        datePickerDialog.datePicker.maxDate = calendar.timeInMillis
+        datePickerDialog.show()
     }
 
     private fun setupClickListeners(myView: View) {
-        myView.btnAddExpense.setOnClickListener {
-            expenseViewModel.insertExpense(Expenses(0, myView.etTitle.text.toString().trim(), "12", myView.etAmount.text.toString().trim(), myView.etDesc.text.toString().trim(), "3"))
-            dismiss()
+        myView.tvDate.setOnClickListener {
+            selectDate()
         }
+        val function: (View) -> Unit = {
+            val isValidated = validateInputFields()
+            if (isValidated) {
+            expenseViewModel.insertExpense(
+                Expenses(
+                    0,
+                    myView.etTitle.text.toString().trim(),
+                    myView.tvDate.text.toString().trim(),
+                    myView.etAmount.text.toString().trim(),
+                    myView.etDesc.text.toString().trim(),
+                    arguments?.getString(USER_ID).toString()
+                )
+
+            )
+                dismiss()
+            }
+
+        }
+        myView.btnAddExpense.setOnClickListener(function)
+    }
+
+    private fun validateInputFields(): Boolean {
+        val title = myView?.etTitle?.text.toString().trim()
+        val date = myView?.tvDate?.text.toString().trim()
+        val amount = myView?.etAmount?.text.toString().trim()
+
+        return when {
+            TextUtils.isEmpty(title) -> {
+                myView?.etTitle?.setError("Mandatory Field")
+                false
+            }
+            TextUtils.isEmpty(date) -> {
+                myView?.tvDate?.setError("Mandatory Field")
+                false
+            }
+            TextUtils.isEmpty(amount) -> {
+                myView?.etAmount?.setError("Mandatory Field")
+                false
+            }
+            else -> true
+        }
+    }
+
+    override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
+        myView?.tvDate?.setError(null)
+        myView?.tvDate?.text =
+            "${convertDateFormatCustom("${month + 1}/$day/$year", AppConstants.DATE_FORMAT_MM_dd_yyyy, AppConstants.DATE_FORMAT_MMM_dd_yyyy)}"
+    }
+
+    private fun convertDateFormatCustom(
+        currentDate: String,
+        currentDateFormatString: String?, reqDateFormat: String?
+    ): String? {
+        val currentDateFormat = SimpleDateFormat(
+            currentDateFormatString, Locale.US
+        )
+        val format = SimpleDateFormat(reqDateFormat, Locale.US)
+        try {
+            val d = currentDateFormat.parse(currentDate)
+            return format.format(d!!)
+        } catch (e: Exception) {
+            Log.e("date", "$currentDate ")
+            e.printStackTrace()
+        }
+        return currentDate
     }
 
 }
