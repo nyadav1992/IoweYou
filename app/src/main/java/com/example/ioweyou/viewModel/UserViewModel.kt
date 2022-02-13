@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var user: LiveData<List<User>>
-    var repository: UserRepository
+    var user: LiveData<List<User>>
+    private var repository: UserRepository
 
 
     val userData: LiveData<List<User>>

@@ -22,7 +22,7 @@ abstract class IoweYouDatabase : RoomDatabase() {
     companion object{
 
         //creating migration to update db changes in previous apps
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE user_table ADD COLUMN password TEXT default 123 NOT NULL")
                 database.execSQL("ALTER TABLE user_table ADD COLUMN gender TEXT")

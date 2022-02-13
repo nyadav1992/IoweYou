@@ -55,7 +55,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         myView = view
         expenseViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ExpensesViewModel::class.java)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[ExpensesViewModel::class.java]
 
         setupClickListeners(view)
     }
@@ -112,15 +112,15 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
 
         return when {
             TextUtils.isEmpty(title) -> {
-                myView?.etTitle?.setError("Mandatory Field")
+                myView?.etTitle?.error = getString(R.string.mandatory_field)
                 false
             }
             TextUtils.isEmpty(date) -> {
-                myView?.tvDate?.setError("Mandatory Field")
+                myView?.tvDate?.error = getString(R.string.mandatory_field)
                 false
             }
             TextUtils.isEmpty(amount) -> {
-                myView?.etAmount?.setError("Mandatory Field")
+                myView?.etAmount?.error = getString(R.string.mandatory_field)
                 false
             }
             else -> true
@@ -128,7 +128,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
-        myView?.tvDate?.setError(null)
+        myView?.tvDate?.error = null
         myView?.tvDate?.text =
             "${convertDateFormatCustom("${month + 1}/$day/$year", AppConstants.DATE_FORMAT_MM_dd_yyyy, AppConstants.DATE_FORMAT_MMM_dd_yyyy)}"
     }

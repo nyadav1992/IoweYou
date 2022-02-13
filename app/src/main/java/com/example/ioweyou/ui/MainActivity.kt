@@ -3,7 +3,6 @@ package com.example.ioweyou.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ioweyou.R
@@ -18,8 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     private var email: String? = null
-    lateinit var userViewModel: UserViewModel
-    lateinit var expensesViewModel: ExpensesViewModel
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var expensesViewModel: ExpensesViewModel
     private lateinit var user: User
 
 
@@ -30,31 +29,27 @@ class MainActivity : BaseActivity() {
         supportActionBar?.setIcon(R.drawable.ic_baseline_person_24)
 
         userViewModel = ViewModelProvider(this,
-        ViewModelProvider.AndroidViewModelFactory.getInstance(application))
-            .get(UserViewModel::class.java)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[UserViewModel::class.java]
 
         expensesViewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))
-            .get(ExpensesViewModel::class.java)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ExpensesViewModel::class.java]
 
         email = Preferences.getData(AppConstants.USER_EMAIL, "")
         userViewModel.getUser(email!!).observe(this,
-        Observer {
-            if (it != null) {
-                user = it
-                supportActionBar?.setTitle(" ${it.userName}")
+            {
+                if (it != null) {
+                    user = it
+                    supportActionBar?.title = " ${it.userName}"
 
-            }
-        })
+                }
+            })
 
         val adapter = ExpenseAdapter()
 
         expensesViewModel.getAllExpenses().observe(this,
-            Observer {
+            {
                 if (it != null) {
-
-                    adapter.submitList(it)
-
+                    adapter.submitList(it.reversed())
                 }
             })
 

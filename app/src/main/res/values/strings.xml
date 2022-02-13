@@ -22,4 +22,5 @@
     <string name="you">You</string>
     <string name="paid_by">Paid By:</string>
     <string name="shared_by">Shared By:</string>
+    <string name="mandatory_field">Mandatory Field</string>
 </resources>
