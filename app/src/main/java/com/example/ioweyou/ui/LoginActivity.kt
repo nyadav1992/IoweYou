@@ -10,6 +10,7 @@ import com.example.ioweyou.R
 import com.example.ioweyou.base.BaseActivity
 import com.example.ioweyou.models.User
 import com.example.ioweyou.viewModel.MainViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -26,13 +27,14 @@ class LoginActivity : BaseActivity() {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application))
             .get(MainViewModel::class.java)
 
-        viewModel.insertUser(User(1, "Neeraj", "neeraj@gmail.com", "male", 29))
-        viewModel.insertUser(User(2, "Neeraj1", "neeraj@gmail.com", "male", 29))
-        viewModel.insertUser(User(3, "Neeraj2", "neeraj@gmail.com", "male", 29))
-        viewModel.insertUser(User(4, "Neeraj3", "neeraj@gmail.com", "male", 29))
+/*        viewModel.insertUser(User(1, "Neeraj", "neeraj@gmail.com", null, null, "123"))
+        viewModel.insertUser(User(2, "Neeraj1", "neeraj@gmail.com", null, null, "123"))
+        viewModel.insertUser(User(3, "Neeraj2", "neeraj@gmail.com", "male", 29, "123"))
+        viewModel.insertUser(User(4, "Neeraj3", "neeraj@gmail.com", "male", 29, "123"))*/
 
-        viewModel.getUser("neeraj@gmail.com").observe(this, Observer {
-            Toast.makeText(this, it.eMail.toString(), Toast.LENGTH_LONG).show()
+        viewModel.getUser("baburao@gmail.com").observe(this, Observer {
+            if (it != null)
+            showToast(it.userName)
         })
 
     }
