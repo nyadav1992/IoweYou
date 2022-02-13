@@ -14,4 +14,6 @@
     <dimen name="margin_exp_detail_value">6dp</dimen>
     <dimen name="margin_add_exp_value">4dp</dimen>
     <dimen name="margin_add_exp_et">12dp</dimen>
+    <dimen name="add_expense_dialog_padding">18dp</dimen>
+
 </resources>

@@ -6,14 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.ioweyou.dao.ExpensesDao
 import com.example.ioweyou.dao.UserDao
+import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
 
-@Database(entities = [User::class], version = 2)
+@Database(entities = [User::class, Expenses::class], version = 2)
 abstract class IoweYouDatabase : RoomDatabase() {
 
     abstract fun getUser(): UserDao
 
+    abstract fun getExpenses(): ExpensesDao
 
 
     companion object{

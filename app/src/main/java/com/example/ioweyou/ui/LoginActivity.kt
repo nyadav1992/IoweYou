@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.base.BaseActivity
-import com.example.ioweyou.viewModel.MainViewModel
+import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import android.util.Patterns
 import com.example.ioweyou.utils.AppConstants
@@ -15,7 +15,7 @@ import com.example.ioweyou.utils.Preferences
 
 
 class LoginActivity : BaseActivity() {
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class LoginActivity : BaseActivity() {
 
         viewModel = ViewModelProvider(this,
         ViewModelProvider.AndroidViewModelFactory.getInstance(application))
-            .get(MainViewModel::class.java)
+            .get(UserViewModel::class.java)
 
         //insert user data manually in DB
 /*        viewModel.insertUser(User(1, "Neeraj", "neeraj@gmail.com", null, null, "123"))

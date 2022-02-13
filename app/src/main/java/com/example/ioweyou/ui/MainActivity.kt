@@ -1,6 +1,5 @@
 package com.example.ioweyou.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,14 +7,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.base.BaseActivity
+import com.example.ioweyou.models.User
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
-import com.example.ioweyou.viewModel.MainViewModel
+import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     private var email: String? = null
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModel: UserViewModel
+    private lateinit var user: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,16 +25,14 @@ class MainActivity : BaseActivity() {
 
         viewModel = ViewModelProvider(this,
         ViewModelProvider.AndroidViewModelFactory.getInstance(application))
-            .get(MainViewModel::class.java)
+            .get(UserViewModel::class.java)
         email = Preferences.getData(AppConstants.USER_EMAIL, "")
         viewModel.getUser(email!!).observe(this,
         Observer {
-            it.let {
-                when(it.eMail){
-                    email -> {
-                        supportActionBar?.setTitle(" ${it.userName}")
-                    }
-                }
+            if (it != null) {
+                user = it
+                supportActionBar?.setTitle(" ${it.userName}")
+
             }
         })
 
@@ -51,12 +50,10 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.add_expense -> {
-            startActivity(Intent(this, ExpenseDetail::class.java))
-            showToast("Add Expenses")
+            AddExpenseFragment.newInstance(user.id.toString(), getString(R.string.invalid_credentials)).show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }
         R.id.home -> {
-            showToast("vdcd")
             true
         }
         else -> {

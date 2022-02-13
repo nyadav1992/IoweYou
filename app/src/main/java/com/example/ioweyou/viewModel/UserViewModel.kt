@@ -10,7 +10,7 @@ import com.example.ioweyou.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var user: LiveData<List<User>>
     var repository: UserRepository
