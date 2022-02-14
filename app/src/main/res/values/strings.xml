@@ -5,7 +5,7 @@
     <string name="submit">Login</string>
     <string name="enter_email">Please Enter E-Mail Address</string>
     <string name="enter_password">Please Enter Password</string>
-    <string name="invalid_input">The E-Mail addres you entered is not valid</string>
+    <string name="invalid_input">The E-Mail address you entered is not valid</string>
     <string name="invalid_credentials">This E-Mail and password is not registered with us.</string>
     <string name="add_expense">Add Expense</string>
     <string name="title">Title*</string>
@@ -13,11 +13,11 @@
     <string name="amount">Amount(INR)*</string>
     <string name="description">Description</string>
     <string name="save_expense">Save Expense</string>
-    <string name="expense_date">Expense Date</string>
-    <string name="split_equally_with">Split Equally With</string>
-    <string name="expense_paid_by">Expense Paid By</string>
-    <string name="expense_description">Expense Description</string>
-    <string name="expense_amount">Total Amount</string>
+    <string name="expense_date">Expense date</string>
+    <string name="split_equally_with">Split equally with</string>
+    <string name="expense_paid_by">Paid By</string>
+    <string name="expense_description">Expense description</string>
+    <string name="expense_amount">Total expense amount</string>
     <string name="everyone_equally">Everyone Equally</string>
     <string name="you">You</string>
     <string name="paid_by">Paid By:</string>

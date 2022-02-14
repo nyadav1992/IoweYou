@@ -55,6 +55,7 @@
         android:id="@+id/etAmount"
         style="@style/et_add_exp"
         android:hint="@string/amount"
+        android:maxLength="8"
         android:inputType="numberDecimal"
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -63,9 +64,10 @@
         android:id="@+id/etDesc"
         style="@style/et_add_exp"
         android:hint="@string/description"
-        android:inputType="text"
         android:gravity="top"
-        android:layout_height="120dp"
+        android:maxLength="120"
+        android:minLines="4"
+        android:maxLines="4"
         app:layout_constraintTop_toBottomOf="@+id/etAmount"
         app:layout_constraintLeft_toLeftOf="parent"/>
 

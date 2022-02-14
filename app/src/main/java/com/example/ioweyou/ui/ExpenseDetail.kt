@@ -1,15 +1,28 @@
 package com.example.ioweyou.ui
 
+import android.os.BaseBundle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import com.example.ioweyou.R
+import com.example.ioweyou.base.BaseActivity
+import com.example.ioweyou.databinding.ActivityExpenseDetailBinding
+import com.example.ioweyou.models.Expenses
+import com.example.ioweyou.utils.AppConstants
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ExpenseDetail : AppCompatActivity() {
+class ExpenseDetail : BaseActivity() {
+
+    private lateinit var expennseDetailBinding: ActivityExpenseDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_expense_detail)
+        expennseDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_detail)
         setSupportActionBar(my_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
+
+        val expenses = intent.getSerializableExtra(AppConstants.INTENT_KEY_EXTRA) as Expenses
+        expennseDetailBinding.expenseData = expenses
     }
 }

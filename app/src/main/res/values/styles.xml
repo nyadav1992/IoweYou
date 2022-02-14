@@ -71,7 +71,6 @@
     <style name="exp_detail_title_value" parent="match_wrap">
         <item name="android:textSize">@dimen/tv_exp_detail_value</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">@dimen/margin_exp_detail_value</item>
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
@@ -94,6 +93,7 @@
         <item name="android:background">@drawable/et_rect_border_bold</item>
         <item name="android:padding">@dimen/login_et_padding</item>
         <item name="android:maxLines">1</item>
+        <item name="android:maxLength">60</item>
         <item name="android:layout_marginTop">@dimen/margin_add_exp_et</item>
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>

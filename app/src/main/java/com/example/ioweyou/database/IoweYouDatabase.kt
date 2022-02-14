@@ -9,7 +9,7 @@ import com.example.ioweyou.dao.UserDao
 import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
 
-@Database(entities = [User::class, Expenses::class], version = 4)
+@Database(entities = [User::class, Expenses::class], version = 5)
 @TypeConverters(Converter::class)
 abstract class IoweYouDatabase : RoomDatabase() {
 
@@ -46,6 +46,12 @@ abstract class IoweYouDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE expenses ADD COLUMN isByYou INTEGER DEFAULT(0)")
+            }
+        }
+
         //writes to this field are immediately made visible to other threads.
         @Volatile
         private var INSTANCE: IoweYouDatabase? = null
@@ -56,7 +62,7 @@ abstract class IoweYouDatabase : RoomDatabase() {
                 IoweYouDatabase::class.java,
                 "IoweYouDB")
                     .createFromAsset("user.db")
-                    .addMigrations(MIGRATION_3_4)
+                    .addMigrations(MIGRATION_4_5)
                     .build()
             }
         }

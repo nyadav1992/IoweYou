@@ -1,23 +1,37 @@
 package com.example.ioweyou.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ioweyou.R
 import com.example.ioweyou.databinding.RowExpenseListBinding
 import com.example.ioweyou.models.Expenses
+import com.example.ioweyou.utils.AppConstants
+import com.example.ioweyou.utils.Preferences
 
-class ExpenseAdapter: ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(DiffUtils()) {
-
+class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(DiffUtils()) {
+    var context: Context? = null
     class ExpenseViewHolder(val rowExpenseListBinding: RowExpenseListBinding) : RecyclerView.ViewHolder(rowExpenseListBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
+        context = parent.context
         val root = RowExpenseListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ExpenseViewHolder(root)
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
-        holder.rowExpenseListBinding.mData = getItem(position)
+        val item = getItem(position)
+        if (item.paidBy == Preferences.getData(AppConstants.LOGGED_IN_USER_ID, 0).toString())
+            context!!.getString(R.string.you).also {
+                item.paidByName = it
+                item.isByYou = true
+            }
+        holder.rowExpenseListBinding.mData = item
+        holder.rowExpenseListBinding.mainLayout.setOnClickListener {
+            clickListener.onItemClicked(item)
+        }
     }
 
     class DiffUtils: androidx.recyclerview.widget.DiffUtil.ItemCallback<Expenses>(){
@@ -31,4 +45,8 @@ class ExpenseAdapter: ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(Di
 
     }
 
+}
+
+interface ItemClickListener {
+    fun onItemClicked(expenses: Expenses)
 }

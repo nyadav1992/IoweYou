@@ -43,6 +43,7 @@ class LoginActivity : BaseActivity() {
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     Preferences.saveData(AppConstants.isUserLoggedIn, true)
                     Preferences.saveData(AppConstants.LOGGED_IN_USER_EMAIL, it.eMail)
+                    Preferences.saveData(AppConstants.LOGGED_IN_USER_ID, it.id)
                     finish()
                 } else {
                     showToast(getString(R.string.invalid_credentials))

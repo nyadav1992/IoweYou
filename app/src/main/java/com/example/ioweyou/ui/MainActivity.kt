@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ioweyou.R
 import com.example.ioweyou.adapters.ExpenseAdapter
+import com.example.ioweyou.adapters.ItemClickListener
 import com.example.ioweyou.base.BaseActivity
+import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
@@ -16,11 +18,12 @@ import com.example.ioweyou.viewModel.ExpensesViewModel
 import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), ItemClickListener {
     private var email: String? = null
     private lateinit var userViewModel: UserViewModel
     private lateinit var expensesViewModel: ExpensesViewModel
     private lateinit var user: User
+    private var userList = mutableListOf<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +49,15 @@ class MainActivity : BaseActivity() {
                 }
             })
 
-        val adapter = ExpenseAdapter()
+        userViewModel.user.observe(this,
+            {
+                if (it != null) {
+                    for (i in it)
+                        userList.add(i.userName)
+                }
+            })
+
+        val adapter = ExpenseAdapter(this)
 
         expensesViewModel.getAllExpenses().observe(this,
             {
@@ -78,7 +89,7 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.add_expense -> {
-            AddExpenseFragment.newInstance(user).show(supportFragmentManager, AddExpenseFragment.TAG)
+            AddExpenseFragment.newInstance(user, userList).show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }
         R.id.home -> {
@@ -90,5 +101,9 @@ class MainActivity : BaseActivity() {
             // Invoke the superclass to handle it.
             super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onItemClicked(expenses: Expenses) {
+        startActivity(Intent(this, ExpenseDetail::class.java).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
     }
 }

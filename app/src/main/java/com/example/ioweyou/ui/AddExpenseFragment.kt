@@ -33,10 +33,12 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         const val TAG = "AddExpenseDialog"
 
         private const val USER = "user_id"
+        private const val USER_LIST = "user_list"
 
-        fun newInstance(userId: User): AddExpenseFragment {
+        fun newInstance(userId: User, userList: List<String>): AddExpenseFragment {
             val args = Bundle()
             args.putSerializable(USER, userId as Serializable)
+            args.putSerializable(USER_LIST, userList as Serializable)
             val fragment = AddExpenseFragment()
             fragment.arguments = args
             return fragment
@@ -85,13 +87,19 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
 
     private fun setupClickListeners(myView: View) {
         val user = arguments?.getSerializable(USER) as User
+        val userList = arguments?.getSerializable(USER_LIST) as List<*>
+
+
         myView.tvDate.setOnClickListener {
             selectDate()
         }
         val function: (View) -> Unit = {
             val isValidated = validateInputFields()
             if (isValidated) {
-            expenseViewModel.insertExpense(
+                val amount = myView.etAmount.text.toString().trim()
+                val getBack = amount.toDouble().div(userList.size)
+
+                expenseViewModel.insertExpense(
                 Expenses(
                     0,
                     myView.etTitle.text.toString().trim(),
@@ -99,7 +107,11 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
                     myView.etAmount.text.toString().trim(),
                     myView.etDesc.text.toString().trim(),
                     user.id.toString(),
-                    user.userName
+                    user.userName,
+                    getBack.toString(),
+                    (getBack * 3 ).toString(),
+                    userList as List<String>,
+                    false
                 )
 
             )

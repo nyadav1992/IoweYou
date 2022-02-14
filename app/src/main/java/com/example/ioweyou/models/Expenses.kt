@@ -2,6 +2,7 @@ package com.example.ioweyou.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "expenses")
 data class Expenses(
@@ -12,8 +13,9 @@ data class Expenses(
     val totalAmount: String,
     val description: String? = null,
     val paidBy: String,
-    val paidByName: String? = null,
+    var paidByName: String? = null,
     val youOwe: String? = null,
     val youGetBack: String? = null,
-    val splitWith: List<String>? = null
-    )
+    val splitWith: List<String>? = null,
+    var isByYou: Boolean? = null
+    ) : Serializable
