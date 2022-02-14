@@ -23,9 +23,10 @@ class LoginActivity : BaseActivity() {
         viewModel = ViewModelProvider(this,
         ViewModelProvider.AndroidViewModelFactory.getInstance(application))[UserViewModel::class.java]
 
+        btnSubmit.setOnClickListener { login() }
     }
 
-    fun login() {
+    private fun login() {
         //getting value from edit texts
         val enteredValue = etUserName.text.toString().trim()
         val password = etPass.text.toString().trim()
@@ -41,7 +42,7 @@ class LoginActivity : BaseActivity() {
                     showToast("Welcome ${it.userName}")
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     Preferences.saveData(AppConstants.isUserLoggedIn, true)
-                    Preferences.saveData(AppConstants.USER_EMAIL, it.eMail)
+                    Preferences.saveData(AppConstants.LOGGED_IN_USER_EMAIL, it.eMail)
                     finish()
                 } else {
                     showToast(getString(R.string.invalid_credentials))

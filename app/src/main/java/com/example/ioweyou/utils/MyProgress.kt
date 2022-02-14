@@ -21,7 +21,7 @@ class MyProgress : DialogFragment() {
                 activity
             )
 
-            // layoutinflater object and use activity to get layout inflater
+            // layout inflater object and use activity to get layout inflater
             val inflater = activity.layoutInflater
             val view = inflater.inflate(R.layout.layout_progress, null)
             builder.setView(view)
@@ -37,7 +37,7 @@ class MyProgress : DialogFragment() {
                 activity
             )
 
-            // layoutinflater object and use activity to get layout inflater
+            // layout inflater object and use activity to get layout inflater
             val inflater = activity.layoutInflater
             val view = inflater.inflate(R.layout.layout_progress, null)
             builder.setView(view)

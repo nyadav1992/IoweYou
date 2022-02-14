@@ -1,5 +1,6 @@
 package com.example.ioweyou.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -34,7 +35,8 @@ class MainActivity : BaseActivity() {
         expensesViewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ExpensesViewModel::class.java]
 
-        email = Preferences.getData(AppConstants.USER_EMAIL, "")
+        email = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
+
         userViewModel.getUser(email!!).observe(this,
             {
                 if (it != null) {
@@ -56,6 +58,12 @@ class MainActivity : BaseActivity() {
         rvExpenses.layoutManager = LinearLayoutManager(this)
         rvExpenses.adapter = adapter
 
+        my_toolbar.setOnClickListener {
+            Preferences.saveData(AppConstants.isUserLoggedIn, false)
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,10 +78,11 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.add_expense -> {
-            AddExpenseFragment.newInstance(user.id.toString()).show(supportFragmentManager, AddExpenseFragment.TAG)
+            AddExpenseFragment.newInstance(user).show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }
         R.id.home -> {
+
             true
         }
         else -> {

@@ -11,5 +11,9 @@ data class Expenses(
     val date: String,
     val totalAmount: String,
     val description: String? = null,
-    val paidBy: String
+    val paidBy: String,
+    val paidByName: String? = null,
+    val youOwe: String? = null,
+    val youGetBack: String? = null,
+    val splitWith: List<String>? = null
     )

@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ExpensesViewModel(application: Application): AndroidViewModel(application) {
-    private lateinit var expenseRepository: ExpenseRepository
+    private var expenseRepository: ExpenseRepository
 
     init {
         val expensesDao = IoweYouDatabase.getDatabase(application).getExpenses()

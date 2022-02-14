@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             android:layout_marginStart="4dp"
             tools:text="600 INR"
-            android:text="@{mData.totalAmount}"
+            android:text='@{mData.totalAmount + " INR"}'
             android:textSize="11sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
@@ -90,6 +90,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvtotalAmountValue"
             android:layout_marginStart="4dp"
             tools:text="BabuRao Apte"
+            android:text='@{mData.paidByName ?? "--"}'
             android:textSize="11sp"
             android:textStyle="bold"
             android:textColor="@color/black" />

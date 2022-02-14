@@ -15,9 +15,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.models.Expenses
+import com.example.ioweyou.models.User
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.viewModel.ExpensesViewModel
 import kotlinx.android.synthetic.main.layout_add_expense.view.*
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,11 +32,11 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
 
         const val TAG = "AddExpenseDialog"
 
-        private const val USER_ID = "user_id"
+        private const val USER = "user_id"
 
-        fun newInstance(userId: String): AddExpenseFragment {
+        fun newInstance(userId: User): AddExpenseFragment {
             val args = Bundle()
-            args.putString(USER_ID, userId)
+            args.putSerializable(USER, userId as Serializable)
             val fragment = AddExpenseFragment()
             fragment.arguments = args
             return fragment
@@ -63,6 +65,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
@@ -81,6 +84,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     private fun setupClickListeners(myView: View) {
+        val user = arguments?.getSerializable(USER) as User
         myView.tvDate.setOnClickListener {
             selectDate()
         }
@@ -94,7 +98,8 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
                     myView.tvDate.text.toString().trim(),
                     myView.etAmount.text.toString().trim(),
                     myView.etDesc.text.toString().trim(),
-                    arguments?.getString(USER_ID).toString()
+                    user.id.toString(),
+                    user.userName
                 )
 
             )

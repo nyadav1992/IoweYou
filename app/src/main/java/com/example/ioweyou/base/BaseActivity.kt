@@ -17,7 +17,7 @@ open class BaseActivity : AppCompatActivity(), ICommonViewCallbacks {
     }
 
     override fun hideProgressDialog() {
-        MyProgress.hide(this)
+        MyProgress.hide()
 
     }
 
