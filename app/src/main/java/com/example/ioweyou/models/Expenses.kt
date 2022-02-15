@@ -16,6 +16,6 @@ data class Expenses(
     var paidByName: String? = null,
     val youOwe: String? = null,
     val youGetBack: String? = null,
-    val splitWith: List<String>? = null,
+    var splitWith: List<String>? = null,
     var isByYou: Boolean? = null
     ) : Serializable

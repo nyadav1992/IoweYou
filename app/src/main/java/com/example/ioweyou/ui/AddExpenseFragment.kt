@@ -20,11 +20,13 @@ import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.viewModel.ExpensesViewModel
 import kotlinx.android.synthetic.main.layout_add_expense.view.*
 import java.io.Serializable
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
+    //using viewmodel to save date instance for screen rotation and to submit data
     private lateinit var expenseViewModel: ExpensesViewModel
     private var myView: View? = null
 
@@ -57,9 +59,16 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myView = view
+
+        //initializing viewmodel
         expenseViewModel = ViewModelProvider(
             requireActivity(),
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[ExpensesViewModel::class.java]
+
+        //seting date to textview
+        expenseViewModel.text.observe(viewLifecycleOwner) {
+            myView?.tvDate?.text = it
+        }
 
         setupClickListeners(view)
     }
@@ -74,6 +83,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         )
     }
 
+    //it will open date picker dialog
     private fun selectDate() {
         val calendar: Calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_MONTH)
@@ -88,40 +98,41 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     private fun setupClickListeners(myView: View) {
         val user = arguments?.getSerializable(USER) as User
         val userList = arguments?.getSerializable(USER_LIST) as List<*>
-
+        val decimalFormat = DecimalFormat("0.00")
 
         myView.tvDate.setOnClickListener {
             selectDate()
         }
-        val function: (View) -> Unit = {
+        myView.btnAddExpense.setOnClickListener{
+            //to check fourm validation before submit data
             val isValidated = validateInputFields()
+
             if (isValidated) {
                 val amount = myView.etAmount.text.toString().trim()
                 val getBack = amount.toDouble().div(userList.size)
 
                 expenseViewModel.insertExpense(
-                Expenses(
-                    0,
-                    myView.etTitle.text.toString().trim(),
-                    myView.tvDate.text.toString().trim(),
-                    myView.etAmount.text.toString().trim(),
-                    myView.etDesc.text.toString().trim(),
-                    user.id.toString(),
-                    user.userName,
-                    getBack.toString(),
-                    (getBack * 3 ).toString(),
-                    userList as List<String>,
-                    false
-                )
+                    Expenses(
+                        0,
+                        myView.etTitle.text.toString().trim(),
+                        myView.tvDate.text.toString().trim(),
+                        myView.etAmount.text.toString().trim(),
+                        myView.etDesc.text.toString().trim(),
+                        user.id.toString(),
+                        user.userName,
+                        decimalFormat.format(getBack).toString(),
+                        decimalFormat.format(getBack * 3 ).toString(),
+                        userList as List<String>,
+                        false
+                    )
 
-            )
+                )
                 dismiss()
             }
-
         }
-        myView.btnAddExpense.setOnClickListener(function)
     }
 
+    //method to validate form input data for empty fields
     private fun validateInputFields(): Boolean {
         val title = myView?.etTitle?.text.toString().trim()
         val date = myView?.tvDate?.text.toString().trim()
@@ -144,12 +155,13 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         }
     }
 
+    //date picker callback
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         myView?.tvDate?.error = null
-        myView?.tvDate?.text =
-            "${convertDateFormatCustom("${month + 1}/$day/$year", AppConstants.DATE_FORMAT_MM_dd_yyyy, AppConstants.DATE_FORMAT_MMM_dd_yyyy)}"
+        expenseViewModel.setText(convertDateFormatCustom((month + 1).toString() +"/"+day+"/"+year, AppConstants.DATE_FORMAT_MM_dd_yyyy, AppConstants.DATE_FORMAT_MMM_dd_yyyy)!!)
     }
 
+    //method to convert date on desire format
     private fun convertDateFormatCustom(
         currentDate: String,
         currentDateFormatString: String?, reqDateFormat: String?

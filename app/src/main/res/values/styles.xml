@@ -47,6 +47,7 @@
         <item name="android:background">@drawable/et_rect_border</item>
         <item name="android:padding">@dimen/login_et_padding</item>
         <item name="android:maxLines">1</item>
+        <item name="hintTextColor">@color/hint_gray</item>
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
     </style>

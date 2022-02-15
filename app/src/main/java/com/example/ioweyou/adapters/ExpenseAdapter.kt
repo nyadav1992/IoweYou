@@ -10,6 +10,8 @@ import com.example.ioweyou.databinding.RowExpenseListBinding
 import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(DiffUtils()) {
     var context: Context? = null
@@ -25,8 +27,13 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
         val item = getItem(position)
         if (item.paidBy == Preferences.getData(AppConstants.LOGGED_IN_USER_ID, 0).toString())
             context!!.getString(R.string.you).also {
+                val data = Preferences.getData(AppConstants.LOGGED_IN_USER_NAME, "")
+                val listToString = listToString(item.splitWith)
+                val stringToList = stringToList(listToString!!.replace(data!!, "You"))
+                item.splitWith = stringToList
                 item.paidByName = it
                 item.isByYou = true
+
             }
         holder.rowExpenseListBinding.mData = item
         holder.rowExpenseListBinding.mainLayout.setOnClickListener {
@@ -43,6 +50,22 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
             return oldItem == newItem
         }
 
+    }
+
+    private fun stringToList(value: String?): List<String>? {
+        if (value == null)
+            return null
+        val gson = Gson()
+        val type = object : TypeToken<List<String>>() {}.type
+        return gson.fromJson(value, type)
+    }
+
+    private fun listToString(value: List<String>?): String?{
+        if (value == null)
+            return null
+        val gson = Gson()
+        val type = object : TypeToken<List<String>>() {}.type
+        return gson.toJson(value, type)
     }
 
 }

@@ -18,136 +18,143 @@
             android:id="@+id/my_toolbar"
             style="@style/toolbar"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clMainView"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+            android:scrollbars="none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clMainView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:id="@+id/tvTitle"
-                tools:text="Dosa at Vidhyarthi Bhawan with some one specialVidhyarthi Bhawan with some one special"
-                android:text='@{expenseData.title}'
-                android:textSize="@dimen/expense_detail_title"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:maxLines="3"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:padding="16dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseDate"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                android:text="@string/expense_date"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseDateValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Expense Date"
-                android:text='@{expenseData.date}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseDate" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="3"
+                    android:text='@{expenseData.title}'
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/expense_detail_title"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Dosa at Vidhyarthi Bhawan with some one specialVidhyarthi Bhawan with some one special" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseAmount"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                android:text="@string/expense_amount"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseDateValue" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseDate"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text="@string/expense_date"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseAmountValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Expense Amount"
-                android:text='@{expenseData.totalAmount + " INR"}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmount" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseDateValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.date}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseDate"
+                    tools:text="Expense Date" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseDesc"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                android:text="@string/expense_description"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmountValue" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseAmount"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text="@string/expense_amount"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseDateValue" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseDescValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Expense Desc"
-                android:text='@{expenseData.description}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseDesc" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseAmountValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.totalAmount + " INR"}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmount"
+                    tools:text="Expense Amount" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpensePaidBy"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                android:text="@string/expense_paid_by"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseDescValue" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseDesc"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text="@string/expense_description"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseAmountValue" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpensePaidByValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Expense Paid By"
-                android:text='@{expenseData.paidByName}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidBy" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseDescValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.description}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseDesc"
+                    tools:text="Expense Desc" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseSplit"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                android:text="@string/split_equally_with"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidByValue" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpensePaidBy"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text="@string/expense_paid_by"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseDescValue" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseSplitValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Split Equally With"
-                android:text='@{expenseData.splitWith.toString().replaceAll("\\[","").replaceAll("\\]","")}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplit" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpensePaidByValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.paidByName}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidBy"
+                    tools:text="Expense Paid By" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseYouOwe"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title"
-                tools:text="@string/expense_date"
-                android:text='@{expenseData.isByYou ? "You get back" : "You owe" }'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplitValue" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseSplit"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text="@string/split_equally_with"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpensePaidByValue" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpenseYouOweValue"
-                android:layout_height="0dp"
-                style="@style/exp_detail_title_value"
-                tools:text="Expense Date"
-                android:text='@{expenseData.isByYou ? expenseData.youGetBack + " INR" : expenseData.youOwe + " INR"}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExpenseYouOwe" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseSplitValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.splitWith.toString().replaceAll("\\[","").replaceAll("\\]","")}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplit"
+                    tools:text="Split Equally With" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseYouOwe"
+                    style="@style/exp_detail_title"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.isByYou ? "You get back" : "You owe" }'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseSplitValue"
+                    tools:text="@string/expense_date" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExpenseYouOweValue"
+                    style="@style/exp_detail_title_value"
+                    android:layout_height="0dp"
+                    android:text='@{expenseData.isByYou ? expenseData.youGetBack + " INR" : expenseData.youOwe + " INR"}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpenseYouOwe"
+                    tools:text="Expense Date" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

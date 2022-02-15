@@ -40,31 +40,31 @@ class MainActivity : BaseActivity(), ItemClickListener {
 
         email = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
 
-        userViewModel.getUser(email!!).observe(this,
-            {
-                if (it != null) {
-                    user = it
-                    supportActionBar?.title = " ${it.userName}"
+        userViewModel.getUser(email!!).observe(this
+        ) {
+            if (it != null) {
+                user = it
+                supportActionBar?.title = " ${it.userName}"
 
-                }
-            })
+            }
+        }
 
-        userViewModel.user.observe(this,
-            {
-                if (it != null) {
-                    for (i in it)
-                        userList.add(i.userName)
-                }
-            })
+        userViewModel.user.observe(this
+        ) {
+            if (it != null) {
+                for (i in it)
+                    userList.add(i.userName)
+            }
+        }
 
         val adapter = ExpenseAdapter(this)
 
-        expensesViewModel.getAllExpenses().observe(this,
-            {
-                if (it != null) {
-                    adapter.submitList(it.reversed())
-                }
-            })
+        expensesViewModel.getAllExpenses().observe(this
+        ) {
+            if (it != null) {
+                adapter.submitList(it.reversed())
+            }
+        }
 
         rvExpenses.layoutManager = LinearLayoutManager(this)
         rvExpenses.adapter = adapter

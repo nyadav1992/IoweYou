@@ -33,6 +33,7 @@ class LoginActivity : BaseActivity() {
 
         //Checking validation of input fields
         if (TextUtils.isEmpty(enteredValue)){
+            etUserName.error = getString(R.string.mandatory_field)
             showToast(getString(R.string.enter_email))
         } else if (!isValidEmail(enteredValue)) {
             showToast(getString(R.string.invalid_input))
@@ -44,12 +45,14 @@ class LoginActivity : BaseActivity() {
                     Preferences.saveData(AppConstants.isUserLoggedIn, true)
                     Preferences.saveData(AppConstants.LOGGED_IN_USER_EMAIL, it.eMail)
                     Preferences.saveData(AppConstants.LOGGED_IN_USER_ID, it.id)
+                    Preferences.saveData(AppConstants.LOGGED_IN_USER_NAME, it.userName)
                     finish()
                 } else {
                     showToast(getString(R.string.invalid_credentials))
                 }
             })
         } else{
+            etPass.error = getString(R.string.mandatory_field)
             showToast(getString(R.string.enter_password))
         }
 

@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/value_page_padding"
-    tools:context=".ui.LoginActivity">
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/tv_logo"
-        android:id="@+id/tvSplash"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/etUserName"
-        android:layout_marginBottom="@dimen/splash_logo_margin"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        style="@style/et_login"
-        android:id="@+id/etUserName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
-        android:inputType="text"
-        android:hint="@string/username"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        style="@style/et_login"
-        android:id="@+id/etPass"
-        android:inputType="textPassword"
-        android:layout_marginTop="12dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUserName"
-        android:hint="@string/password"/>
-
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnSubmit"
-        android:textSize="@dimen/login_et_text_size"
-        android:text="@string/submit"
-        android:background="@drawable/et_rect_border_button"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/etPass"
-        android:layout_marginTop="@dimen/button_top_padding_login" />
+        android:padding="@dimen/value_page_padding"
+        android:layout_gravity="center"
+        tools:context=".ui.LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSplash"
+            style="@style/tv_logo"
+            android:layout_marginBottom="@dimen/splash_logo_margin"
+            app:layout_constraintBottom_toTopOf="@+id/etUserName"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etUserName"
+            style="@style/et_login"
+            android:hint="@string/username"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPass"
+            style="@style/et_login"
+            android:layout_marginTop="12dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etUserName" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_top_padding_login"
+            android:background="@drawable/et_rect_border_button"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/login_et_text_size"
+            app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

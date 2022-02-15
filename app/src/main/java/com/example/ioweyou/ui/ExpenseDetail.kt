@@ -20,7 +20,7 @@ class ExpenseDetail : BaseActivity() {
         expennseDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_detail)
         setSupportActionBar(my_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = ""
+        supportActionBar?.title = getString(R.string.expense_detail)
 
         val expenses = intent.getSerializableExtra(AppConstants.INTENT_KEY_EXTRA) as Expenses
         expennseDetailBinding.expenseData = expenses
