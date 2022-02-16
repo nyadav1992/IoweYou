@@ -28,13 +28,13 @@ class ExpensesViewModel(application: Application): AndroidViewModel(application)
     }
 
     //live data and methods to save selected date when scree rotate.
-    private var _text = MutableLiveData<String>().apply {
+    private var date = MutableLiveData<String>().apply {
         value = ""
     }
-    var text: LiveData<String> = _text
+    var dateString: LiveData<String> = date
 
     fun setText(text: String){
-        _text.postValue(text)
+        date.postValue(text)
     }
 
 }

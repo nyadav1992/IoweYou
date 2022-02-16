@@ -38,7 +38,7 @@ class LoginActivity : BaseActivity() {
         } else if (!isValidEmail(enteredValue)) {
             showToast(getString(R.string.invalid_input))
         } else if (!TextUtils.isEmpty(password)){
-            viewModel.getUser(enteredValue).observe(this, {
+            viewModel.getUser(enteredValue).observe(this) {
                 if (it != null && it.password == password) {
                     showToast("Welcome ${it.userName}")
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
@@ -50,7 +50,7 @@ class LoginActivity : BaseActivity() {
                 } else {
                     showToast(getString(R.string.invalid_credentials))
                 }
-            })
+            }
         } else{
             etPass.error = getString(R.string.mandatory_field)
             showToast(getString(R.string.enter_password))

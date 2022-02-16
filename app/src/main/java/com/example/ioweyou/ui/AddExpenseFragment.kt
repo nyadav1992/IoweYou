@@ -66,7 +66,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[ExpensesViewModel::class.java]
 
         //seting date to textview
-        expenseViewModel.text.observe(viewLifecycleOwner) {
+        expenseViewModel.dateString.observe(viewLifecycleOwner) {
             myView?.tvDate?.text = it
         }
 
@@ -153,6 +153,12 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             }
             else -> true
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //need to make date empty because viewmodel has activity lifecycle
+        expenseViewModel.setText("")
     }
 
     //date picker callback

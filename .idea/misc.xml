@@ -7,6 +7,8 @@
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable-v24/et_rect_border_bold.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable-v24/et_rect_border_button.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable-v24/et_rect_border_dialog.xml" value="0.16018518518518518" />
+        <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable-v24/rect_border_dialog.xml" value="0.128" />
+        <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable/et_rect_border.xml" value="0.1" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.16018518518518518" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/activity_expense_detail.xml" value="0.264" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/activity_login.xml" value="0.176" />
@@ -15,7 +17,7 @@
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/custom_toast.xml" value="0.1" />
-        <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/layout_add_expense.xml" value="0.264" />
+        <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/layout_add_expense.xml" value="0.2" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/layout_progress.xml" value="0.26197916666666665" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/layout/row_expense_list.xml" value="0.29314420803782504" />
         <entry key="..\:/Users/mrnee/AndroidStudioProjects/IoweYou/app/src/main/res/menu/toolbar_menu.xml" value="0.1" />

@@ -1,85 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/add_expense_dialog_padding"
-    android:background="@drawable/rect_border_dialog"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPaidBy"
-        style="@style/add_exp_title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="@string/paid_by"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rect_border_dialog"
+        android:padding="@dimen/add_expense_dialog_padding">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPaidByValue"
-        style="@style/add_exp_value"
-        app:layout_constraintTop_toBottomOf="@+id/tvPaidBy"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="@string/you"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPaidBy"
+            style="@style/add_exp_title"
+            android:text="@string/paid_by"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSharedBy"
-        style="@style/add_exp_title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/shared_by"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPaidByValue"
+            style="@style/add_exp_value"
+            android:text="@string/you"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPaidBy" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSharedByValue"
-        style="@style/add_exp_value"
-        app:layout_constraintTop_toBottomOf="@+id/tvPaidBy"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/everyone_equally"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSharedBy"
+            style="@style/add_exp_title"
+            android:text="@string/shared_by"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTitle"
-        style="@style/et_add_exp"
-        android:hint="@string/title"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/tvPaidByValue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="40dp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSharedByValue"
+            style="@style/add_exp_value"
+            android:text="@string/everyone_equally"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPaidBy" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDate"
-        style="@style/et_add_exp"
-        android:hint="@string/date"
-        android:inputType="date"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etTitle"
+            style="@style/et_add_exp"
+            android:layout_marginTop="40dp"
+            android:hint="@string/title"
+            android:inputType="text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPaidByValue" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etAmount"
-        style="@style/et_add_exp"
-        android:hint="@string/amount"
-        android:maxLength="8"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            style="@style/et_add_exp"
+            android:hint="@string/date"
+            android:inputType="date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etDesc"
-        style="@style/et_add_exp"
-        android:hint="@string/description"
-        android:gravity="top"
-        android:maxLength="120"
-        android:minLines="4"
-        android:maxLines="4"
-        app:layout_constraintTop_toBottomOf="@+id/etAmount"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etAmount"
+            style="@style/et_add_exp"
+            android:hint="@string/amount"
+            android:inputType="numberDecimal"
+            android:maxLength="8"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
-    <Button
-        android:id="@+id/btnAddExpense"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/etDesc"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/et_rect_border_button"
-        android:text="@string/save_expense"
-        android:textColor="@color/white"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etDesc"
+            style="@style/et_add_exp"
+            android:gravity="top"
+            android:hint="@string/description"
+            android:maxLength="120"
+            android:maxLines="4"
+            android:minLines="4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAmount" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnAddExpense"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/et_rect_border_button"
+            android:text="@string/save_expense"
+            android:textColor="@color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
