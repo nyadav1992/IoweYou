@@ -155,12 +155,6 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        //need to make date empty because viewmodel has activity lifecycle
-        expenseViewModel.setText("")
-    }
-
     //date picker callback
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         myView?.tvDate?.error = null
