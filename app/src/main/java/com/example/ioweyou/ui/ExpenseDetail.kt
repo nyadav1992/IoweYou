@@ -11,17 +11,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ExpenseDetail : BaseActivity() {
 
-    private lateinit var expennseDetailBinding: ActivityExpenseDetailBinding
+    private lateinit var expenseDetailBinding: ActivityExpenseDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        expennseDetailBinding =
+        expenseDetailBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_expense_detail)
         setSupportActionBar(my_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.expense_detail)
 
         val expenses = intent.getSerializableExtra(AppConstants.INTENT_KEY_EXTRA) as Expenses
-        expennseDetailBinding.expenseData = expenses
+        expenseDetailBinding.expenseData = expenses
     }
 }
