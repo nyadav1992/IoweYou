@@ -26,7 +26,7 @@ import java.util.*
 
 class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    //using viewmodel to save date instance for screen rotation and to submit data
+    //using view model to save date instance for screen rotation and to submit data
     private lateinit var expenseViewModel: ExpensesViewModel
     private var myView: View? = null
 
@@ -60,12 +60,12 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         super.onViewCreated(view, savedInstanceState)
         myView = view
 
-        //initializing viewmodel
+        //initializing view model
         expenseViewModel = ViewModelProvider(
             requireActivity(),
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[ExpensesViewModel::class.java]
 
-        //seting date to textview
+        //setting date to textview
         expenseViewModel.dateString.observe(viewLifecycleOwner) {
             myView?.tvDate?.text = it
         }
@@ -104,7 +104,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             selectDate()
         }
         myView.btnAddExpense.setOnClickListener{
-            //to check fourm validation before submit data
+            //to check form validation before submit data
             val isValidated = validateInputFields()
 
             if (isValidated) {
@@ -149,6 +149,10 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             }
             TextUtils.isEmpty(amount) -> {
                 myView?.etAmount?.error = getString(R.string.mandatory_field)
+                false
+            }
+            amount.toDouble() <= 0 -> {
+                myView?.etAmount?.error = getString(R.string.amount_should_not_zero)
                 false
             }
             else -> true

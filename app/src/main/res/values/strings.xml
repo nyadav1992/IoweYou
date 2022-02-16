@@ -23,6 +23,7 @@
     <string name="paid_by">Paid By:</string>
     <string name="shared_by">Shared By:</string>
     <string name="mandatory_field">Mandatory Field</string>
+    <string name="amount_should_not_zero">Amount should be greater than 0</string>
     <string name="expense_detail">Expense Detail</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>

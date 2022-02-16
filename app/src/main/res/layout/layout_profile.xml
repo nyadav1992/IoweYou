@@ -41,7 +41,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvUserName"
-                style="@style/add_exp_title"
+                style="@style/add_exp_value"
                 tools:text="Neeraj Yadav"
                 android:text='@{userData.userName}'
                 android:textSize="@dimen/tv_profile_title"
