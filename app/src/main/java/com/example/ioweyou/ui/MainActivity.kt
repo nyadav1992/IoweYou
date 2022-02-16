@@ -1,9 +1,12 @@
 package com.example.ioweyou.ui
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ioweyou.R
@@ -12,6 +15,8 @@ import com.example.ioweyou.adapters.ItemClickListener
 import com.example.ioweyou.base.BaseActivity
 import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
+import com.example.ioweyou.ui.fragments.AddExpenseFragment
+import com.example.ioweyou.ui.fragments.ProfileFragment
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
 import com.example.ioweyou.viewModel.ExpensesViewModel
@@ -84,8 +89,11 @@ class MainActivity : BaseActivity(), ItemClickListener {
         expensesViewModel.getAllExpenses().observe(
             this
         ) {
-            if (it != null) {
+            if (it != null && it.size > 0) {
                 adapter.submitList(it.reversed())
+                empty_view.visibility = View.GONE
+            } else{
+                empty_view.visibility = View.VISIBLE
             }
         }
 
@@ -122,11 +130,36 @@ class MainActivity : BaseActivity(), ItemClickListener {
         }
     }
 
-    override fun onItemClicked(expenses: Expenses) {
-        startActivity(
-            Intent(
-                this,
-                ExpenseDetail::class.java
-            ).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
+    override fun onItemClicked(expenses: Expenses, clickType: String) {
+        when (clickType) {
+            AppConstants.CLICK_TYPE.DELETE -> {
+                askForDeleteExpense(expenses)
+                true
+            }
+            AppConstants.CLICK_TYPE.DETAIL ->{
+                startActivity(
+                    Intent(
+                        this,
+                        ExpenseDetail::class.java
+                    ).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
+                true
+            }
+            else -> false
+        }
+    }
+
+    //method for delete the expense
+    private fun askForDeleteExpense(expenses: Expenses) {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle(this.getString(R.string.delete))
+        alertDialogBuilder.setMessage(this.getString(R.string.are_you_sure_to_delete))
+        alertDialogBuilder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+            expensesViewModel.deleteExpense(expenses)
+        }
+        alertDialogBuilder.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel() }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 }

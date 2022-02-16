@@ -1,4 +1,4 @@
-package com.example.ioweyou.ui
+package com.example.ioweyou.ui.fragments
 
 import android.app.DatePickerDialog
 import android.graphics.Color

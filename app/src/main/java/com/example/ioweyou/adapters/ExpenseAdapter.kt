@@ -2,6 +2,7 @@ package com.example.ioweyou.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -31,21 +32,29 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) :
 
         //Apply some condition to modify data according to view needs
         val item = getItem(position)
+
+        val data = Preferences.getData(AppConstants.LOGGED_IN_USER_NAME, "")
+        val listToString = listToString(item.splitWith)
+        val stringToList = stringToList(listToString!!.replace(data!!, "You"))
+        item.splitWith = stringToList
+
         if (item.paidBy == Preferences.getData(AppConstants.LOGGED_IN_USER_ID, 0).toString())
             context!!.getString(R.string.you).also {
-                val data = Preferences.getData(AppConstants.LOGGED_IN_USER_NAME, "")
-                val listToString = listToString(item.splitWith)
-                val stringToList = stringToList(listToString!!.replace(data!!, "You"))
-                item.splitWith = stringToList
                 item.paidByName = it
                 item.isByYou = true
 
             }
+        else
+            holder.rowExpenseListBinding.ivDelete.visibility = View.GONE
 
         holder.rowExpenseListBinding.mData = item
 
         holder.rowExpenseListBinding.mainLayout.setOnClickListener {
-            clickListener.onItemClicked(item)
+            clickListener.onItemClicked(item, AppConstants.CLICK_TYPE.DETAIL)
+        }
+
+        holder.rowExpenseListBinding.ivDelete.setOnClickListener {
+            clickListener.onItemClicked(item, AppConstants.CLICK_TYPE.DELETE)
         }
     }
 
@@ -83,5 +92,5 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) :
 
 //Interface for recycler Click
 interface ItemClickListener {
-    fun onItemClicked(expenses: Expenses)
+    fun onItemClicked(expenses: Expenses, clickType: String)
 }

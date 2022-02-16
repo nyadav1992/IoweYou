@@ -68,12 +68,6 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$roomVersion")
 
-    //Coroutines core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
-    //Coroutines Android
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
-
-    //Livedata and viewmodel
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 }

@@ -1,4 +1,4 @@
-package com.example.ioweyou.ui
+package com.example.ioweyou.ui.fragments
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.databinding.LayoutProfileBinding
+import com.example.ioweyou.ui.LoginActivity
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
 import com.example.ioweyou.viewModel.UserViewModel

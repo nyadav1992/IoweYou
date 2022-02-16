@@ -27,6 +27,10 @@ class ExpensesViewModel(application: Application) : AndroidViewModel(application
         expenseRepository.insertExpense(expenses)
     }
 
+    fun deleteExpense(expenses: Expenses) = viewModelScope.launch(Dispatchers.IO) {
+        expenseRepository.deleteExpense(expenses)
+    }
+
     //live data and methods to save selected date when scree rotate.
     private var date = MutableLiveData<String>().apply {
         value = ""

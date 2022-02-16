@@ -10,4 +10,9 @@ class AppConstants {
         const val DATE_FORMAT_MMM_dd_yyyy: String = "MMM dd yyyy"
         const val INTENT_KEY_EXTRA: String = "intent_key_extra"
     }
+
+    object CLICK_TYPE {
+        val DELETE: String = "delete"
+        val DETAIL: String = "detail"
+    }
 }
