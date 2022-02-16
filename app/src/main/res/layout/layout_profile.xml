@@ -10,89 +10,113 @@
             type="com.example.ioweyou.models.User" />
     </data>
 
-    <ScrollView
+    <!-- This relative is for make background transparent and shrink dialog -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:background="@color/transparent"
+        android:paddingEnd="60dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rect_border_dialog"
-            android:padding="@dimen/add_expense_dialog_padding">
+            android:layout_alignParentBottom="true"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivCross"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_baseline_close_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivProfile"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/ic_baseline_account_circle_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivCross" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvUserName"
-                style="@style/add_exp_value"
-                android:text='@{userData.userName}'
-                android:textSize="@dimen/tv_profile_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivProfile"
-                tools:text="Neeraj Yadav" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAge"
-                style="@style/add_exp_title"
-                android:text="@string/age"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUserName" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAgeValue"
-                style="@style/add_exp_value"
-                android:text='@{userData.age + ""}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAge"
-                tools:text="29" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvGender"
-                style="@style/add_exp_title"
-                android:text="@string/gender"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUserName" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvGenderValue"
-                style="@style/add_exp_value"
-                android:text='@{userData.gender}'
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGender"
-                tools:text="Male" />
-
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="100dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_logout_btn"
-                android:background="@drawable/et_rect_border_button"
-                android:text="@string/logout"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAgeValue" />
+                android:background="@drawable/rect_border_dialog"
+                android:padding="@dimen/add_expense_dialog_padding">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCross"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </ScrollView>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_baseline_account_circle_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivCross" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserEmail"
+                    style="@style/add_exp_title"
+                    android:text='@{userData.eMail}'
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivProfile"
+                    tools:text="Neeraj@gmail.com" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserName"
+                    style="@style/add_exp_value"
+                    android:text='@{userData.userName}'
+                    android:textSize="@dimen/tv_profile_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvUserEmail"
+                    tools:text="Neeraj Yadav" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAge"
+                    style="@style/add_exp_title"
+                    android:text="@string/age"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAgeValue"
+                    style="@style/add_exp_value"
+                    android:text='@{userData.age + ""}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAge"
+                    tools:text="29" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGender"
+                    style="@style/add_exp_title"
+                    android:text="@string/gender"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGenderValue"
+                    style="@style/add_exp_value"
+                    android:text='@{userData.gender}'
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGender"
+                    tools:text="Male" />
+
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_logout_btn"
+                    android:background="@drawable/et_rect_border_button"
+                    android:text="@string/logout"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAgeValue" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
 </layout>

@@ -17,7 +17,7 @@
     <dimen name="add_expense_dialog_padding">18dp</dimen>
     <dimen name="add_expense_dialog_margin">40dp</dimen>
     <dimen name="expense_detail_title">20sp</dimen>
-    <dimen name="tv_profile_title">32sp</dimen>
+    <dimen name="tv_profile_title">28sp</dimen>
     <dimen name="margin_top_logout_btn">48dp</dimen>
 
 </resources>

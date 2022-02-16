@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
 
         //added 3 second timer to delay the next screen
         MainScope().launch(Dispatchers.Main) {
-            delay(3000)
+            delay(1000)
             // Applying condition according to user LogIn status
             if (Preferences.isUserLoggerIn)
                 startActivity(Intent(applicationContext, MainActivity::class.java))

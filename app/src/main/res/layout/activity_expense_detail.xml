@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable
             name="expenseData"
             type="com.example.ioweyou.models.Expenses" />
@@ -96,7 +97,7 @@
                     android:id="@+id/tvExpenseDescValue"
                     style="@style/exp_detail_title_value"
                     android:layout_height="0dp"
-                    android:text='@{expenseData.description}'
+                    android:text='@{TextUtils.isEmpty(expenseData.description) ? "--": expenseData.description}'
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvExpenseDesc"
                     tools:text="Expense Desc" />

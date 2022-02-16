@@ -61,7 +61,10 @@ class ProfileFragment : DialogFragment() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         )[UserViewModel::class.java]
         val userEmail = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
+
+        //getting user data
         userViewModel.getUser(userEmail!!).observe(requireActivity()) {
+            //setting data to xml file
             layoutProfileBinding.userData = it
         }
 
@@ -78,6 +81,8 @@ class ProfileFragment : DialogFragment() {
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+        dialog?.setCancelable(true)
+        dialog?.setCanceledOnTouchOutside(true)
     }
 
     private fun setupClickListeners() {

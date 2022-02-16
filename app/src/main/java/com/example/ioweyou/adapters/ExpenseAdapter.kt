@@ -47,6 +47,7 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) :
         else
             holder.rowExpenseListBinding.ivDelete.visibility = View.GONE
 
+        //setting data to xml file
         holder.rowExpenseListBinding.mData = item
 
         holder.rowExpenseListBinding.mainLayout.setOnClickListener {
