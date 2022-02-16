@@ -18,4 +18,4 @@ data class Expenses(
     val youGetBack: String? = null,
     var splitWith: List<String>? = null,
     var isByYou: Boolean? = null
-    ) : Serializable
+) : Serializable

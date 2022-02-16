@@ -13,7 +13,7 @@ data class User(
     val id: Int,
     val userName: String,
     val eMail: String,
-    val gender: String? =null,
+    val gender: String? = null,
     val age: Int? = null,
     val password: String,
-): Serializable
+) : Serializable

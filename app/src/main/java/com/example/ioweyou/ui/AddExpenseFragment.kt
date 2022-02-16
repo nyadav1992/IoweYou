@@ -63,7 +63,8 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         //initializing view model
         expenseViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[ExpensesViewModel::class.java]
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[ExpensesViewModel::class.java]
 
         //setting date to textview
         expenseViewModel.dateString.observe(viewLifecycleOwner) {
@@ -103,7 +104,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         myView.tvDate.setOnClickListener {
             selectDate()
         }
-        myView.btnAddExpense.setOnClickListener{
+        myView.btnAddExpense.setOnClickListener {
             //to check form validation before submit data
             val isValidated = validateInputFields()
 
@@ -121,7 +122,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
                         user.id.toString(),
                         user.userName,
                         decimalFormat.format(getBack).toString(),
-                        decimalFormat.format(getBack * 3 ).toString(),
+                        decimalFormat.format(getBack * 3).toString(),
                         userList as List<String>,
                         false
                     )
@@ -162,7 +163,13 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     //date picker callback
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         myView?.tvDate?.error = null
-        expenseViewModel.setText(convertDateFormatCustom((month + 1).toString() +"/"+day+"/"+year, AppConstants.DATE_FORMAT_MM_dd_yyyy, AppConstants.DATE_FORMAT_MMM_dd_yyyy)!!)
+        expenseViewModel.setText(
+            convertDateFormatCustom(
+                (month + 1).toString() + "/" + day + "/" + year,
+                AppConstants.DATE_FORMAT_MM_dd_yyyy,
+                AppConstants.DATE_FORMAT_MMM_dd_yyyy
+            )!!
+        )
     }
 
     //method to convert date on desire format

@@ -3,14 +3,14 @@ package com.example.ioweyou.ui
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
 import com.example.ioweyou.base.BaseActivity
-import com.example.ioweyou.viewModel.UserViewModel
-import kotlinx.android.synthetic.main.activity_login.*
-import android.util.Patterns
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
+import com.example.ioweyou.viewModel.UserViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : BaseActivity() {
@@ -20,8 +20,11 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        viewModel = ViewModelProvider(this,
-        ViewModelProvider.AndroidViewModelFactory.getInstance(application))[UserViewModel::class.java]
+        //initializing view model
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[UserViewModel::class.java]
 
         btnSubmit.setOnClickListener { login() }
     }
@@ -32,12 +35,12 @@ class LoginActivity : BaseActivity() {
         val password = etPass.text.toString().trim()
 
         //Checking validation of input fields
-        if (TextUtils.isEmpty(enteredValue)){
+        if (TextUtils.isEmpty(enteredValue)) {
             etUserName.error = getString(R.string.mandatory_field)
             showToast(getString(R.string.enter_email))
         } else if (!isValidEmail(enteredValue)) {
             showToast(getString(R.string.invalid_input))
-        } else if (!TextUtils.isEmpty(password)){
+        } else if (!TextUtils.isEmpty(password)) {
             viewModel.getUser(enteredValue).observe(this) {
                 if (it != null && it.password == password) {
                     showToast("Welcome ${it.userName}")
@@ -51,7 +54,7 @@ class LoginActivity : BaseActivity() {
                     showToast(getString(R.string.invalid_credentials))
                 }
             }
-        } else{
+        } else {
             etPass.error = getString(R.string.mandatory_field)
             showToast(getString(R.string.enter_password))
         }

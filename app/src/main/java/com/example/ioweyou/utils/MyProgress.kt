@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.layout_progress.view.*
 
 class MyProgress : DialogFragment() {
 
-    companion object{
+    companion object {
 
         private var dialog: AlertDialog? = null
 
@@ -44,13 +44,13 @@ class MyProgress : DialogFragment() {
             builder.setCancelable(false)
             dialog = builder.create()
             view.message.text = message
-                dialog!!.show()
+            dialog!!.show()
         }
 
         // dismiss method
         fun hide() {
-            if (dialog!= null)
-            dialog?.dismiss()
+            if (dialog != null)
+                dialog?.dismiss()
         }
 
     }

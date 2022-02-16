@@ -13,11 +13,11 @@
         <activity
             android:name=".ui.ExpenseDetail"
             android:exported="false"
-            android:parentActivityName=".ui.MainActivity"/>
+            android:parentActivityName=".ui.MainActivity" />
         <activity
             android:name=".ui.LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">

@@ -1,10 +1,8 @@
 package com.example.ioweyou.utils
 
-import android.content.SharedPreferences
 import android.app.Activity
 import android.content.Context
-import java.util.HashSet
-import kotlin.jvm.Synchronized
+import android.content.SharedPreferences
 
 object Preferences {
     private const val PREF_NAME = "IOU"

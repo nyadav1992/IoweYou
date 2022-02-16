@@ -1,4 +1,5 @@
 package com.example.ioweyou.database
+
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -6,7 +7,7 @@ import com.google.gson.reflect.TypeToken
 class Converter {
 
     @TypeConverter
-    fun stringToList(value: String?): List<String>?{
+    fun stringToList(value: String?): List<String>? {
         if (value == null)
             return null
         val gson = Gson()
@@ -15,7 +16,7 @@ class Converter {
     }
 
     @TypeConverter
-    fun listToString(value: List<String>?): String?{
+    fun listToString(value: List<String>?): String? {
         if (value == null)
             return null
         val gson = Gson()

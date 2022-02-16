@@ -1,7 +1,5 @@
 package com.example.ioweyou.ui
 
-import android.os.BaseBundle
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.ioweyou.R
@@ -17,7 +15,8 @@ class ExpenseDetail : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        expennseDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_detail)
+        expennseDetailBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_expense_detail)
         setSupportActionBar(my_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.expense_detail)

@@ -10,11 +10,11 @@ class ExpenseRepository(private val expensesDao: ExpensesDao) {
 
     fun getExpenseById(id: Int): LiveData<Expenses> = expensesDao.getExpensebyid(id)
 
-    suspend fun insertExpense(expenses: Expenses){
+    suspend fun insertExpense(expenses: Expenses) {
         expensesDao.insertExpense(expenses)
     }
 
-    suspend fun deleteExpense(expenses: Expenses){
+    suspend fun deleteExpense(expenses: Expenses) {
         expensesDao.deleteExpense(expenses)
     }
 

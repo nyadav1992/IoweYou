@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="userData"
-            type="com.example.ioweyou.models.User"/>
+            type="com.example.ioweyou.models.User" />
     </data>
 
     <ScrollView
@@ -25,29 +26,29 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:padding="8dp"
+                android:src="@drawable/ic_baseline_close_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_baseline_close_24" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivProfile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivCross"
+                android:layout_marginTop="18dp"
                 android:src="@drawable/ic_baseline_account_circle_24"
-                android:layout_marginTop="18dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivCross" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvUserName"
                 style="@style/add_exp_value"
-                tools:text="Neeraj Yadav"
                 android:text='@{userData.userName}'
                 android:textSize="@dimen/tv_profile_title"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivProfile" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProfile"
+                tools:text="Neeraj Yadav" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAge"
@@ -59,10 +60,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAgeValue"
                 style="@style/add_exp_value"
-                tools:text="29"
                 android:text='@{userData.age + ""}'
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAge" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAge"
+                tools:text="29" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvGender"
@@ -74,10 +75,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvGenderValue"
                 style="@style/add_exp_value"
-                tools:text="Male"
                 android:text='@{userData.gender}'
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+                app:layout_constraintTop_toBottomOf="@+id/tvGender"
+                tools:text="Male" />
 
 
             <Button
@@ -88,8 +89,8 @@
                 android:background="@drawable/et_rect_border_button"
                 android:text="@string/logout"
                 android:textColor="@color/white"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAgeValue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

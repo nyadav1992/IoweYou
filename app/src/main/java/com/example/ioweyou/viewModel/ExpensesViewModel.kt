@@ -11,7 +11,7 @@ import com.example.ioweyou.repository.ExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ExpensesViewModel(application: Application): AndroidViewModel(application) {
+class ExpensesViewModel(application: Application) : AndroidViewModel(application) {
     private var expenseRepository: ExpenseRepository
 
     init {
@@ -33,7 +33,7 @@ class ExpensesViewModel(application: Application): AndroidViewModel(application)
     }
     var dateString: LiveData<String> = date
 
-    fun setText(text: String){
+    fun setText(text: String) {
         date.postValue(text)
     }
 

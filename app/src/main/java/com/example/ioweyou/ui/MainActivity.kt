@@ -32,15 +32,23 @@ class MainActivity : BaseActivity(), ItemClickListener {
         setSupportActionBar(my_toolbar)
         supportActionBar?.setIcon(R.drawable.ic_baseline_person_24)
 
-        userViewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[UserViewModel::class.java]
+        //initializing view models
+        userViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[UserViewModel::class.java]
 
-        expensesViewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ExpensesViewModel::class.java]
+        expensesViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[ExpensesViewModel::class.java]
 
+        //getting logged in user to fetch particular user from table
         email = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
 
-        userViewModel.getUser(email!!).observe(this
+        //getting user by Email from viewModel
+        userViewModel.getUser(email!!).observe(
+            this
         ) {
             if (it != null) {
                 user = it
@@ -49,7 +57,11 @@ class MainActivity : BaseActivity(), ItemClickListener {
             }
         }
 
-        userViewModel.user.observe(this
+        /* getting all users from viewModel
+         to transfer the list in add expense fragment
+         for amount calculation */
+        userViewModel.user.observe(
+            this
         ) {
             if (it != null) {
                 for (i in it)
@@ -57,9 +69,20 @@ class MainActivity : BaseActivity(), ItemClickListener {
             }
         }
 
+        //Method for set up recycler adapter
+        setUpRecyclerAdapter()
+
+        my_toolbar.setOnClickListener {
+            ProfileFragment.newInstance().show(supportFragmentManager, ProfileFragment.TAG)
+        }
+
+    }
+
+    private fun setUpRecyclerAdapter() {
         val adapter = ExpenseAdapter(this)
 
-        expensesViewModel.getAllExpenses().observe(this
+        expensesViewModel.getAllExpenses().observe(
+            this
         ) {
             if (it != null) {
                 adapter.submitList(it.reversed())
@@ -68,11 +91,6 @@ class MainActivity : BaseActivity(), ItemClickListener {
 
         rvExpenses.layoutManager = LinearLayoutManager(this)
         rvExpenses.adapter = adapter
-
-        my_toolbar.setOnClickListener {
-            ProfileFragment.newInstance().show(supportFragmentManager, ProfileFragment.TAG)
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -89,7 +107,8 @@ class MainActivity : BaseActivity(), ItemClickListener {
         R.id.add_expense -> {
             //setting date to blank so that it wont show prefilled after one transaction
             expensesViewModel.setText("")
-            AddExpenseFragment.newInstance(user, userList).show(supportFragmentManager, AddExpenseFragment.TAG)
+            AddExpenseFragment.newInstance(user, userList)
+                .show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }
         R.id.home -> {
@@ -104,6 +123,10 @@ class MainActivity : BaseActivity(), ItemClickListener {
     }
 
     override fun onItemClicked(expenses: Expenses) {
-        startActivity(Intent(this, ExpenseDetail::class.java).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
+        startActivity(
+            Intent(
+                this,
+                ExpenseDetail::class.java
+            ).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
     }
 }

@@ -1,7 +1,10 @@
 package com.example.ioweyou.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.ioweyou.dao.ExpensesDao
@@ -18,7 +21,7 @@ abstract class IoweYouDatabase : RoomDatabase() {
     abstract fun getExpenses(): ExpensesDao
 
 
-    companion object{
+    companion object {
 
         //creating migration to update db changes in previous apps
         private val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -56,11 +59,13 @@ abstract class IoweYouDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: IoweYouDatabase? = null
 
-        fun getDatabase(context: Context): IoweYouDatabase{
-            return INSTANCE?: synchronized(this){
-                return Room.databaseBuilder(context.applicationContext,
-                IoweYouDatabase::class.java,
-                "IoweYouDB")
+        fun getDatabase(context: Context): IoweYouDatabase {
+            return INSTANCE ?: synchronized(this) {
+                return Room.databaseBuilder(
+                    context.applicationContext,
+                    IoweYouDatabase::class.java,
+                    "IoweYouDB"
+                )
                     .createFromAsset("user.db")
                     .addMigrations(MIGRATION_4_5)
                     .build()

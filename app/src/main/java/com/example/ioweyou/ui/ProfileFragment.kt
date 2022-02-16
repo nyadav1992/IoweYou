@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
@@ -43,7 +42,7 @@ class ProfileFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        layoutProfileBinding= DataBindingUtil.inflate(
+        layoutProfileBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.layout_profile,
             container,
@@ -58,9 +57,10 @@ class ProfileFragment : DialogFragment() {
         //initializing view model
         userViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[UserViewModel::class.java]
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[UserViewModel::class.java]
         val userEmail = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
-        userViewModel.getUser(userEmail!!).observe(requireActivity()){
+        userViewModel.getUser(userEmail!!).observe(requireActivity()) {
             layoutProfileBinding.userData = it
         }
 

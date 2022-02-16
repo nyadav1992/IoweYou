@@ -13,9 +13,13 @@ import com.example.ioweyou.utils.Preferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(DiffUtils()) {
+class ExpenseAdapter(private val clickListener: ItemClickListener) :
+    ListAdapter<Expenses, ExpenseAdapter.ExpenseViewHolder>(DiffUtils()) {
     var context: Context? = null
-    class ExpenseViewHolder(val rowExpenseListBinding: RowExpenseListBinding) : RecyclerView.ViewHolder(rowExpenseListBinding.root)
+
+    //View Holder class with DataBinding
+    class ExpenseViewHolder(val rowExpenseListBinding: RowExpenseListBinding) :
+        RecyclerView.ViewHolder(rowExpenseListBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         context = parent.context
@@ -24,6 +28,8 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
+
+        //Apply some condition to modify data according to view needs
         val item = getItem(position)
         if (item.paidBy == Preferences.getData(AppConstants.LOGGED_IN_USER_ID, 0).toString())
             context!!.getString(R.string.you).also {
@@ -35,13 +41,16 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
                 item.isByYou = true
 
             }
+
         holder.rowExpenseListBinding.mData = item
+
         holder.rowExpenseListBinding.mainLayout.setOnClickListener {
             clickListener.onItemClicked(item)
         }
     }
 
-    class DiffUtils: androidx.recyclerview.widget.DiffUtil.ItemCallback<Expenses>(){
+    //DiffUtils to optimize the performance of recyclerview
+    class DiffUtils : androidx.recyclerview.widget.DiffUtil.ItemCallback<Expenses>() {
         override fun areItemsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
             return oldItem.expenseId == newItem.expenseId
         }
@@ -52,6 +61,7 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
 
     }
 
+    //this method converts strings to list<String>
     private fun stringToList(value: String?): List<String>? {
         if (value == null)
             return null
@@ -60,7 +70,8 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
         return gson.fromJson(value, type)
     }
 
-    private fun listToString(value: List<String>?): String?{
+    //this method converts list<String> to String
+    private fun listToString(value: List<String>?): String? {
         if (value == null)
             return null
         val gson = Gson()
@@ -70,6 +81,7 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) : ListAdapter
 
 }
 
+//Interface for recycler Click
 interface ItemClickListener {
     fun onItemClicked(expenses: Expenses)
 }
