@@ -70,9 +70,7 @@ class MainActivity : BaseActivity(), ItemClickListener {
         rvExpenses.adapter = adapter
 
         my_toolbar.setOnClickListener {
-            Preferences.saveData(AppConstants.isUserLoggedIn, false)
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            ProfileFragment.newInstance().show(supportFragmentManager, ProfileFragment.TAG)
         }
 
     }
@@ -89,6 +87,8 @@ class MainActivity : BaseActivity(), ItemClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.add_expense -> {
+            //setting date to blank so that it wont show prefilled after one transaction
+            expensesViewModel.setText("")
             AddExpenseFragment.newInstance(user, userList).show(supportFragmentManager, AddExpenseFragment.TAG)
             true
         }

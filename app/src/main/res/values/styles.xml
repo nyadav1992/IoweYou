@@ -2,8 +2,13 @@
 <resources>
 
     <style name="DialogAnimation">
-    <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
-    <item name="android:windowExitAnimation">@anim/slide_left_out</item>
+        <item name="android:windowEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <style name="DialogAnimationDrawer">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_left_out</item>
     </style>
 
     <style name="wrap_wrap">
@@ -80,6 +85,7 @@
     <style name="add_exp_title" parent="wrap_wrap">
         <item name="android:textSize">@dimen/tv_exp_detail_title</item>
         <item name="android:textColor">@color/light_black</item>
+        <item name="android:layout_marginTop">32dp</item>
     </style>
 
     <style name="add_exp_value" parent="wrap_wrap">

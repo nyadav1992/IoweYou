@@ -24,4 +24,9 @@
     <string name="shared_by">Shared By:</string>
     <string name="mandatory_field">Mandatory Field</string>
     <string name="expense_detail">Expense Detail</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="logout">Logout</string>
+    <string name="are_you_sure_to_logout">Are you sure you want to logout?</string>
+
 </resources>
