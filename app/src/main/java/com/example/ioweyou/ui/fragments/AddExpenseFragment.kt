@@ -3,14 +3,13 @@ package com.example.ioweyou.ui.fragments
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.DatePicker
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ioweyou.R
@@ -18,6 +17,7 @@ import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.viewModel.ExpensesViewModel
+import kotlinx.android.synthetic.main.layout_add_expense.*
 import kotlinx.android.synthetic.main.layout_add_expense.view.*
 import java.io.Serializable
 import java.text.DecimalFormat
@@ -71,7 +71,33 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             myView?.tvDate?.text = it
         }
 
+        //make date field not pastable
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            restrictDateField()
+        }
+
         setupClickListeners(view)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun restrictDateField() {
+        tvDate.customInsertionActionModeCallback = object : ActionMode.Callback{
+            override fun onCreateActionMode(p0: ActionMode?, p1: Menu?): Boolean {
+                return false
+            }
+
+            override fun onPrepareActionMode(p0: ActionMode?, p1: Menu?): Boolean {
+                return false
+            }
+
+            override fun onActionItemClicked(p0: ActionMode?, p1: MenuItem?): Boolean {
+                return false
+            }
+
+            override fun onDestroyActionMode(p0: ActionMode?) {
+            }
+
+        }
     }
 
     override fun onStart() {
@@ -117,7 +143,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
                         0,
                         myView.etTitle.text.toString().trim(),
                         myView.tvDate.text.toString().trim(),
-                        myView.etAmount.text.toString().trim(),
+                        amount.replace(Regex("^0+(?!$)"), "0"),
                         myView.etDesc.text.toString().trim(),
                         user.id.toString(),
                         user.userName,

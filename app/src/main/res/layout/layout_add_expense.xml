@@ -53,6 +53,7 @@
             style="@style/et_add_exp"
             android:hint="@string/date"
             android:inputType="date"
+            android:textIsSelectable="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 

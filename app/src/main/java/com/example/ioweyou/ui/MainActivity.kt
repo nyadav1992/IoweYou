@@ -89,12 +89,12 @@ class MainActivity : BaseActivity(), ItemClickListener {
         expensesViewModel.getAllExpenses().observe(
             this
         ) {
-            if (it != null && it.size > 0) {
+            if (it != null)
                 adapter.submitList(it.reversed())
-                empty_view.visibility = View.GONE
-            } else{
-                empty_view.visibility = View.VISIBLE
-            }
+
+            //show and hide empty view according to condition
+            if (it.isNotEmpty()) empty_view.visibility = View.GONE else empty_view.visibility = View.VISIBLE
+
         }
 
         rvExpenses.layoutManager = LinearLayoutManager(this)
@@ -134,7 +134,6 @@ class MainActivity : BaseActivity(), ItemClickListener {
         when (clickType) {
             AppConstants.CLICK_TYPE.DELETE -> {
                 askForDeleteExpense(expenses)
-                true
             }
             AppConstants.CLICK_TYPE.DETAIL ->{
                 startActivity(
@@ -142,7 +141,6 @@ class MainActivity : BaseActivity(), ItemClickListener {
                         this,
                         ExpenseDetail::class.java
                     ).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
-                true
             }
             else -> false
         }
@@ -155,6 +153,7 @@ class MainActivity : BaseActivity(), ItemClickListener {
         alertDialogBuilder.setMessage(this.getString(R.string.are_you_sure_to_delete))
         alertDialogBuilder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
             expensesViewModel.deleteExpense(expenses)
+            dialogInterface.dismiss()
         }
         alertDialogBuilder.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel() }
 

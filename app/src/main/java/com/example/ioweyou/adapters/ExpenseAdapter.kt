@@ -42,7 +42,7 @@ class ExpenseAdapter(private val clickListener: ItemClickListener) :
             context!!.getString(R.string.you).also {
                 item.paidByName = it
                 item.isByYou = true
-
+                holder.rowExpenseListBinding.ivDelete.visibility = View.VISIBLE
             }
         else
             holder.rowExpenseListBinding.ivDelete.visibility = View.GONE
