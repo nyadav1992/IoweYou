@@ -54,6 +54,7 @@ It has condition (if user loggedin -> MainActivity else -> LoginActivity)
 1. I am using **ListAdapter with DiffUtil** in RecyclerViewAdapter (It improves performance by calculates the difference between two lists and outputs a list of update operations that converts the first list into the second one)
 2. The MVVM Architecture workes great with Dagger2 **(Dependency Injection)**. Will work on that part in future updates.
 3. I have Write some extra DB operations like INSERT, DELETE and UPDATE which are not in use now but it can be used when needed.
+4. I thought **Side Navigation Drawer** is not required to show user profile so i use Simple Fragment for this with behaviour like Drawer :wink:
 
 ## Library reference resources:
 1. Room: https://developer.android.com/topic/libraries/architecture/room.html
