@@ -108,6 +108,8 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+        dialog?.setCancelable(true)
+        dialog?.setCanceledOnTouchOutside(false)
     }
 
     //it will open date picker dialog

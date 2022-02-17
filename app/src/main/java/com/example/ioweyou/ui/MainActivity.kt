@@ -68,9 +68,8 @@ class MainActivity : BaseActivity(), ItemClickListener {
         userViewModel.user.observe(
             this
         ) {
-            if (it != null) {
-                for (i in it)
-                    userList.add(i.userName)
+            it?.forEach{
+                userList.add(it.userName)
             }
         }
 

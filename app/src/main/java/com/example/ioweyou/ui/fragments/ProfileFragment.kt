@@ -90,6 +90,10 @@ class ProfileFragment : DialogFragment() {
             dismiss()
         }
 
+        rlMain.setOnClickListener {
+            dismiss()
+        }
+
         btnLogout.setOnClickListener {
 
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
