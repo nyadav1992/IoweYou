@@ -9,17 +9,21 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ioweyou.IoweYouApplication
 import com.example.ioweyou.R
 import com.example.ioweyou.adapters.ExpenseAdapter
 import com.example.ioweyou.adapters.ItemClickListener
 import com.example.ioweyou.base.BaseActivity
 import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
+import com.example.ioweyou.repository.ExpenseRepository
+import com.example.ioweyou.repository.UserRepository
 import com.example.ioweyou.ui.fragments.AddExpenseFragment
 import com.example.ioweyou.ui.fragments.ProfileFragment
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
 import com.example.ioweyou.viewModel.ExpensesViewModel
+import com.example.ioweyou.viewModel.CommonViewModelFactory
 import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,15 +41,20 @@ class MainActivity : BaseActivity(), ItemClickListener {
         setSupportActionBar(my_toolbar)
         supportActionBar?.setIcon(R.drawable.ic_baseline_person_24)
 
+        val expensesDao = (application as IoweYouApplication).database.getExpenses()
+        val userDao = (application as IoweYouApplication).database.getUser()
+        val expenseRepository = ExpenseRepository(expensesDao)
+        val userRepository = UserRepository(userDao)
+
         //initializing view models
         userViewModel = ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            CommonViewModelFactory(userRepository)
         )[UserViewModel::class.java]
 
         expensesViewModel = ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            CommonViewModelFactory(expenseRepository)
         )[ExpensesViewModel::class.java]
 
         //getting logged in user to fetch particular user from table
