@@ -6,11 +6,11 @@ import com.example.ioweyou.repository.ExpenseRepository
 import com.example.ioweyou.repository.UserRepository
 
 class CommonViewModelFactory<T>(private val repository: T) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelrajuClass: Class<T>): T {
         return when (repository) {
             is ExpenseRepository -> ExpensesViewModel(repository as ExpenseRepository) as T
             is UserRepository -> UserViewModel(repository as UserRepository) as T
-            else -> UserViewModel(repository as UserRepository) as T
+            else -> repository as T
         }
     }
 }

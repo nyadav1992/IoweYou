@@ -12,10 +12,14 @@ import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.ioweyou.IoweYouApplication
 import com.example.ioweyou.R
 import com.example.ioweyou.models.Expenses
 import com.example.ioweyou.models.User
+import com.example.ioweyou.repository.ExpenseRepository
+import com.example.ioweyou.repository.UserRepository
 import com.example.ioweyou.utils.AppConstants
+import com.example.ioweyou.viewModel.CommonViewModelFactory
 import com.example.ioweyou.viewModel.ExpensesViewModel
 import kotlinx.android.synthetic.main.layout_add_expense.*
 import kotlinx.android.synthetic.main.layout_add_expense.view.*
@@ -60,10 +64,13 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         super.onViewCreated(view, savedInstanceState)
         myView = view
 
+        val expenseDao = (requireActivity().application as IoweYouApplication).database.getExpenses()
+        val expenseRepository = ExpenseRepository(expenseDao)
+
         //initializing view model
         expenseViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+            CommonViewModelFactory(expenseDao)
         )[ExpensesViewModel::class.java]
 
         //setting date to textview

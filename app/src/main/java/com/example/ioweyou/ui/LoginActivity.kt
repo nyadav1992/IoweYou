@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import androidx.lifecycle.ViewModelProvider
+import com.example.ioweyou.IoweYouApplication
 import com.example.ioweyou.R
 import com.example.ioweyou.base.BaseActivity
+import com.example.ioweyou.repository.ExpenseRepository
+import com.example.ioweyou.repository.UserRepository
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
+import com.example.ioweyou.viewModel.CommonViewModelFactory
 import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -20,10 +24,13 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val userDao = (application as IoweYouApplication).database.getUser()
+        val userRepository = UserRepository(userDao)
+
         //initializing view model
         viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            CommonViewModelFactory(userRepository)
         )[UserViewModel::class.java]
 
         btnSubmit.setOnClickListener { login() }

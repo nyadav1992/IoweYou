@@ -13,11 +13,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.ioweyou.IoweYouApplication
 import com.example.ioweyou.R
 import com.example.ioweyou.databinding.LayoutProfileBinding
+import com.example.ioweyou.repository.ExpenseRepository
+import com.example.ioweyou.repository.UserRepository
 import com.example.ioweyou.ui.LoginActivity
 import com.example.ioweyou.utils.AppConstants
 import com.example.ioweyou.utils.Preferences
+import com.example.ioweyou.viewModel.CommonViewModelFactory
 import com.example.ioweyou.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.layout_profile.*
 
@@ -55,10 +59,13 @@ class ProfileFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val userDao = (requireActivity().application as IoweYouApplication).database.getUser()
+        val userRepository = UserRepository(userDao)
+
         //initializing view model
         userViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+            CommonViewModelFactory(userRepository)
         )[UserViewModel::class.java]
         val userEmail = Preferences.getData(AppConstants.LOGGED_IN_USER_EMAIL, "")
 
