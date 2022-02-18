@@ -145,10 +145,7 @@ class MainActivity : BaseActivity(), ItemClickListener {
             }
             AppConstants.CLICK_TYPE.DETAIL ->{
                 startActivity(
-                    Intent(
-                        this,
-                        ExpenseDetail::class.java
-                    ).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
+                    Intent(this, ExpenseDetail::class.java).also { it.putExtra(AppConstants.INTENT_KEY_EXTRA, expenses) })
             }
             else -> false
         }
