@@ -7,7 +7,7 @@ import java.io.Serializable
 
 
 // making eMail as unique key so that duplicate value cant be inserted
-@Entity(tableName = "user_table", indices = [Index(value = ["eMail"], unique = true)])
+@Entity(tableName = "user_table", indices = [Index(value = ["eMail", "userName"], unique = true)])
 data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
