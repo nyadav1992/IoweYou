@@ -50,6 +50,14 @@ It has condition (if user loggedin -> MainActivity else -> LoginActivity)
 6. **Profile Fragment**: It shows logged-in user information with **LogOut** button
 7. **Add Expense Fragment**: From here user can add new expense in the list
 
+#### The app logic:
+1. There is one table of users which work like a **Group** for the current requirement
+2. After providing loging crediantials user will redirect to **Main Activity** here user can see all the expenses create by group.
+3. By clicking **UserName** user can see profile and have an option to **Logout** from app
+4. By **Add Expense** button user can create Expense which will devide equally in the current group members and save to the **Expense Table**
+5. While Rendring expenses to **Adapter** logic for converting **UserName into You** written in adapter class.
+6. Same after edit data passed to the detail page so there is no logic required to show data.
+
 #### Note:
 1. I am using **ListAdapter with DiffUtil** in RecyclerViewAdapter (It improves performance by calculates the difference between two lists and outputs a list of update operations that converts the first list into the second one)
 2. The MVVM Architecture workes great with Dagger2 **(Dependency Injection)**. Will work on that part in future updates.
