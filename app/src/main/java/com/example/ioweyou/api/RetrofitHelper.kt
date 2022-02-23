@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitHelper {
 
-    private const val BASE_URL = " https://api.imgflip.com"
+    private const val BASE_URL = ""
 
     private var client: OkHttpClient? = null
     fun getRetroFitInstance() : Retrofit{

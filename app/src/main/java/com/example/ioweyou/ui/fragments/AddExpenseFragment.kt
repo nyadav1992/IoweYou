@@ -157,7 +157,7 @@ class AddExpenseFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
                         user.id.toString(),
                         user.userName,
                         decimalFormat.format(getBack).toString(),
-                        decimalFormat.format(getBack * 3).toString(),
+                        decimalFormat.format(getBack * (userList.size-1)).toString(),
                         userList as List<String>,
                         false
                     )
